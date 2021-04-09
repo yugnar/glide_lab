@@ -3,6 +3,7 @@ package edu.itesm.nytimes
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Adapter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,14 +45,11 @@ class MainActivity : AppCompatActivity() {
 
                 if (responseFromService.isSuccessful) {
                     Log.i("Books", results.results?.books.toString())
+                    Log.i("Books", results.results?.books.get(0).toString())
 
                     recyclerView = findViewById<RecyclerView>(R.id.recycler_view).apply {
-
-                        /*
-                        * Completa el código y crea el adapter.
-                        * */
-
-
+                        layoutManager = LinearLayoutManager(context)
+                        myAdapter = BooksAdapter(results, context)
                     }
 
                 } else {
