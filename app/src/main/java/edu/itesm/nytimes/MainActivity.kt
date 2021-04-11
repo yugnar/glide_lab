@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         manager = LinearLayoutManager(this)
         getAllData()
+        Toast.makeText(applicationContext, "Currently onCreate()!", Toast.LENGTH_LONG).show()
     }
 
     private fun getRetrofit(): Retrofit {
@@ -44,12 +45,12 @@ class MainActivity : AppCompatActivity() {
                 results = responseFromService.body() as Results
 
                 if (responseFromService.isSuccessful) {
-                    Log.i("Books", results.results?.books.toString())
-                    Log.i("Books", results.results?.books.get(0).toString())
+                    //Log.i("Books", results.results?.books.toString())
 
                     recyclerView = findViewById<RecyclerView>(R.id.recycler_view).apply {
-                        layoutManager = LinearLayoutManager(context)
-                        myAdapter = BooksAdapter(results, context)
+                        layoutManager = manager
+                        myAdapter = BooksAdapter(results.results?.books)
+                        adapter = myAdapter
                     }
 
                 } else {
@@ -57,5 +58,35 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onStart(){
+        super.onStart()
+        Toast.makeText(applicationContext, "Currently onStart()!", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(applicationContext, "Currently onResume()!", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Toast.makeText(applicationContext, "Currently onPause()!", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Toast.makeText(applicationContext, "Currently onStop()!", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Toast.makeText(applicationContext, "Currently onDestroy()!", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Toast.makeText(applicationContext, "Currently onRestart()!", Toast.LENGTH_LONG).show()
     }
 }

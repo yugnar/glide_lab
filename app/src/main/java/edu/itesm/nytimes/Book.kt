@@ -11,7 +11,7 @@ data class Books(
 )
 
  */
-data class Book(val rank: Int,
+data class BookTemplate(val rank: Int,
                 val title: String,
                 val description: String,
                 val book_image: String)

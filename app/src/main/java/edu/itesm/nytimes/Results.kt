@@ -7,12 +7,10 @@ data class Results(
 )
 
 data class ResultsInfo(
-    var books: List<Books>
+    var books: List<Book>
 )
 
-data class Books(
-    var rank:Double?,
-    var description:String?,
-    var title:String?,
-    var book_image:String?
-)
+data class Book(val rank: Int,
+                val title: String,
+                val description: String,
+                val book_image: String)
